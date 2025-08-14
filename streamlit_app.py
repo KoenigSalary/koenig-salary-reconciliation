@@ -5,10 +5,9 @@ Streamlit Cloud Entry Point
 """
 
 import streamlit as st
-import sys
 import os
 
-# Set page config first (must be first Streamlit command)
+# Set page config first
 st.set_page_config(
     page_title="Koenig Solutions - Salary Reconciliation",
     page_icon="💼",
@@ -16,26 +15,20 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Add current directory to path
-sys.path.append(os.path.dirname(__file__))
-
-# Import and run your dashboard
+# Execute dashboard.py directly
 try:
-    # Import your dashboard module
-    import dashboard
-    
-    # If dashboard has a main function, call it
-    if hasattr(dashboard, 'main'):
-        dashboard.main()
+    if os.path.exists('dashboard.py'):
+        with open('dashboard.py', 'r') as f:
+            dashboard_code = f.read()
+        exec(dashboard_code)
     else:
-        # Otherwise execute the dashboard file
-        exec(open('dashboard.py').read())
-        
-except FileNotFoundError:
-    st.error("❌ Dashboard file not found")
-    st.info("Available files: " + str(os.listdir('.')))
-except ImportError as e:
-    st.error(f"❌ Import error: {str(e)}")
+        st.error("❌ Dashboard file not found")
+        st.info("Available files: " + str(os.listdir('.')))
 except Exception as e:
     st.error(f"❌ Error loading dashboard: {str(e)}")
-    st.info("Please check the application logs for details.")
+    
+    # Fallback simple interface
+    st.title("🏢 Koenig Solutions")
+    st.subheader("Salary Reconciliation System v2.0")
+    st.info("Loading dashboard... Please check logs for details.")
+    st.write("Error details:", str(e))
