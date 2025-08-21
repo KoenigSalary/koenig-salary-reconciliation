@@ -28,17 +28,17 @@ jobs:
       run: |
         python -c "import streamlit; import pandas; import plotly; print('All imports successful')"
     
-    - name: Validate Streamlit app
-    run: |
+    - name: List files in the directory  # List files to verify correct path
+      run: |
+        ls -R
+        echo "Listing all files to confirm the correct path to dashboard.py"
+    
+    - name: Validate Streamlit app  # Validate Streamlit app
+      run: |
         streamlit run ./Desktop/AI-Preject/koenig-accountant/Salary-Management-Agent/dashboard.py --server.headless true &
         sleep 10
         pkill -f streamlit
         echo "Streamlit app validation complete"
-
-    - name: List files in the directory
-      run: |
-        ls -R
-        echo "Listing all files to confirm the correct path to dashboard.py"
 
   deploy:
     needs: test
