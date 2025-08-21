@@ -29,8 +29,8 @@ jobs:
         python -c "import streamlit; import pandas; import plotly; print('All imports successful')"
     
     - name: Validate Streamlit app
-      run: |
-        streamlit run dashboard.py --server.headless true &
+    run: |
+        streamlit run ./Desktop/AI-Preject/koenig-accountant/Salary-Management-Agent/dashboard.py --server.headless true &
         sleep 10
         pkill -f streamlit
         echo "Streamlit app validation complete"
