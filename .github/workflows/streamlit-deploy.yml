@@ -28,10 +28,10 @@ jobs:
       run: |
         python -c "import streamlit; import pandas; import plotly; print('All imports successful')"
     
-    - name: List files in the directory  # List files to verify correct path
+    - name: List files from the root directory  # List files to check repository structure
       run: |
-        ls -R ./AI-Project/koenig-accountant/Salary-Management-Agent
-        echo "Listing all files to confirm the correct path to dashboard.py"
+        ls -R
+        echo "Listing all files from the root directory"
     
     - name: Validate Streamlit app  # Validate Streamlit app
       run: |
