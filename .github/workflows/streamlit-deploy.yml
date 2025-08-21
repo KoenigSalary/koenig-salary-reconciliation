@@ -30,12 +30,12 @@ jobs:
     
     - name: List files in the directory  # List files to verify correct path
       run: |
-        ls -R
+        ls -R ./AI-Project/koenig-accountant/Salary-Management-Agent
         echo "Listing all files to confirm the correct path to dashboard.py"
     
     - name: Validate Streamlit app  # Validate Streamlit app
       run: |
-        streamlit run ./AI-Project/koenig-accountant/Salary-Management-Agent --server.headless true &
+        streamlit run ./AI-Project/koenig-accountant/Salary-Management-Agent/dashboard.py --server.headless true &
         sleep 10
         pkill -f streamlit
         echo "Streamlit app validation complete"
