@@ -35,7 +35,7 @@ jobs:
     
     - name: Validate Streamlit app  # Validate Streamlit app
       run: |
-        streamlit run ./AI-Preject/koenig-accountant/Salary-Management-Agent/dashboard.py --server.headless true &
+        streamlit run ./AI-Project/koenig-accountant/Salary-Management-Agent/dashboard.py --server.headless true &
         sleep 10
         pkill -f streamlit
         echo "Streamlit app validation complete"
